@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sarbaz_DB" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=sarbaz_DB;Integrated Security=True" SettingsObjectName="sarbaz.Properties.Settings" SettingsPropertyName="sarbaz_DB_ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.City" Member="Cities">
+    <Type Name="City">
+      <Column Name="ID_City" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CityName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Distance" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="City_sarbaz" Member="sarbazs" ThisKey="ID_City" OtherKey="کد_شهر_محل_سکونت" Type="sarbaz" />
+      <Association Name="City_Mashmoolin" Member="Mashmoolins" ThisKey="ID_City" OtherKey="کد_شهر_محل_سکونت" Type="Mashmoolin" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Grade_Reshteh" Member="Grade_Reshtehs">
+    <Type Name="Grade_Reshteh">
+      <Column Name="Id_Grade_Reshteh" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Grade" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id_CodeReshteh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Capacity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Gradetbl_Grade_Reshteh" Member="Gradetbl" ThisKey="Id_Grade" OtherKey="Id_Grade" Type="Gradetbl" IsForeignKey="true" />
+      <Association Name="Reshteha_Grade_Reshteh" Member="Reshteha" ThisKey="Id_CodeReshteh" OtherKey="Id" Type="Reshteha" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gradetbl" Member="Gradetbls">
+    <Type Name="Gradetbl">
+      <Column Name="Id_Grade" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Grade" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Gradetbl_Grade_Reshteh" Member="Grade_Reshtehs" ThisKey="Id_Grade" OtherKey="Id_Grade" Type="Grade_Reshteh" />
+      <Association Name="Gradetbl_sarbaz" Member="sarbazs" ThisKey="Id_Grade" OtherKey="کد_تحصیلات" Type="sarbaz" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reshteha" Member="Reshtehas">
+    <Type Name="Reshteha">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Reshteh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CodeReshteh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Reshteha_Grade_Reshteh" Member="Grade_Reshtehs" ThisKey="Id" OtherKey="Id_CodeReshteh" Type="Grade_Reshteh" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Rakedin_Main_Table" Member="Rakedin_Main_Tables">
+    <Type Name="Rakedin_Main_Table">
+      <Column Name="Id_Rakedin_Main_Table" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[کد پاسداری]" Member="کد_پاسداری" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[رسته خدمتی]" Member="رسته_خدمتی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="درجه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ تنظیم سند]" Member="تاریخ_تنظیم_سند" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ اعزام_شروع خدمت]" Member="تاریخ_اعزام_شروع_خدمت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[آخرین مسئولیت]" Member="آخرین_مسئولیت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ ترخیص]" Member="تاریخ_ترخیص" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[شماره ملی]" Member="شماره_ملی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="نام" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[نام خانوادگی]" Member="نام_خانوادگی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[نام پدر]" Member="نام_پدر" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[شماره شناسنامه]" Member="شماره_شناسنامه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ تولد]" Member="تاریخ_تولد" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل تولد(استان)]" Member="محل_تولد_استان_" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل تولد (شهرستان)]" Member="محل_تولد__شهرستان_" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل تولد(بخش)]" Member="محل_تولد_بخش_" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل تولد (روستا)]" Member="محل_تولد__روستا_" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="تاهل" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تعداد فرزندان]" Member="تعداد_فرزندان" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="[نوع عضویت]" Member="نوع_عضویت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[رنگ چشم]" Member="رنگ_چشم" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[رنگ مو]" Member="رنگ_مو" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[رنگ چهره]" Member="رنگ_چهره" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[گروه خونی]" Member="گروه_خونی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="وزن" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="قد" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="عینک" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[علامت خاص]" Member="علامت_خاص" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[وضعیت جسمانی]" Member="وضعیت_جسمانی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[درصد جانبازی]" Member="درصد_جانبازی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[درصد جانباری_$]" Member="درصد_جانباری__" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="مجروحیت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[اعضای مجروح]" Member="اعضای_مجروح" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ مجروحیت]" Member="تاریخ_مجروحیت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[دلیل مجروحیت]" Member="دلیل_مجروحیت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[نوع بیماری]" Member="نوع_بیماری" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محدودیت کاری]" Member="محدودیت_کاری" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[مدرک اعزام]" Member="مدرک_اعزام" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[رشته اعزام]" Member="رشته_اعزام" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[مدرک پایان]" Member="مدرک_پایان" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[رشته پایان]" Member="رشته_پایان" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[خدمت انجام شده_ضرورت]" Member="خدمت_انجام_شده_ضرورت" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[مدت خدمت قانونی]" Member="مدت_خدمت_قانونی" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[مدت خدمت انجام شده]" Member="مدت_خدمت_انجام_شده" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[شماره کارت ضرورت]" Member="شماره_کارت_ضرورت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ تحویل کارت ضرورت]" Member="تاریخ_تحویل_کارت_ضرورت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تحویل گیرنده کارت ضرورت]" Member="تحویل_گیرنده_کارت_ضرورت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[شماره کارت احتیاط]" Member="شماره_کارت_احتیاط" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ تحویل کارت احتیاط]" Member="تاریخ_تحویل_کارت_احتیاط" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تحویل گیرنده کارت احتیاط]" Member="تحویل_گیرنده_کارت_احتیاط" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[حوزه اعزام کننده]" Member="حوزه_اعزام_کننده" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ اعزام دفترچه]" Member="تاریخ_اعزام_دفترچه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ صدور دفترچه]" Member="تاریخ_صدور_دفترچه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[شماره دفتر اساس حوزه]" Member="شماره_دفتر_اساس_حوزه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[مدت غیبت]" Member="مدت_غیبت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[مدت اضافه خدمت]" Member="مدت_اضافه_خدمت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[حوزه صادر کننده]" Member="حوزه_صادر_کننده" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[نوع جذب]" Member="نوع_جذب" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[دوره عمومی]" Member="دوره_عمومی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[از تاریخ آموزش عمومی]" Member="از_تاریخ_آموزش_عمومی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تا تاریخ آموزش عمومی]" Member="تا_تاریخ_آموزش_عمومی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل آموزش عمومی]" Member="محل_آموزش_عمومی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[دوره تخصصی]" Member="دوره_تخصصی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[از تاریخ آموزش تخصصی]" Member="از_تاریخ_آموزش_تخصصی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تا تاریخ آموزش تخصصی]" Member="تا_تاریخ_آموزش_تخصصی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل آموزش تخصصی]" Member="محل_آموزش_تخصصی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[نوع انفصال]" Member="نوع_انفصال" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[کسری(ماه)]" Member="کسری_ماه_" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[کسری(روز)]" Member="کسری_روز_" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[دلیل کسری]" Member="دلیل_کسری" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[جزئیات کسری]" Member="جزئیات_کسری" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل سکونت]" Member="محل_سکونت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="آدرس" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ تنظیم کارت]" Member="تاریخ_تنظیم_کارت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل صدور شناسنامه]" Member="محل_صدور_شناسنامه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[نام_کسری فرزند]" Member="نام_کسری_فرزند" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[نسبت _کسری فرزند]" Member="نسبت__کسری_فرزند" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[کسری فرزند شماره نامه]" Member="کسری_فرزند_شماره_نامه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[تاریخ کسری فرزند]" Member="تاریخ_کسری_فرزند" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[محل خدمت کسری فرزند]" Member="محل_خدمت_کسری_فرزند" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[جزئیات کسری فرزند]" Member="جزئیات_کسری_فرزند" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Missiontbl" Member="Missiontbls">
+    <Type Name="Missiontbl">
+      <Column Name="Id_Mission" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[محل ماموریت]" Member="محل_ماموریت" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ شروع]" Member="تاریخ_شروع" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[مدت ماموریت ماه]" Member="مدت_ماموریت_ماه" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Daraje" Member="Darajes">
+    <Type Name="Daraje">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CodeDaraje" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NameDaraje" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Daraje_sarbaz" Member="sarbazs" ThisKey="ID" OtherKey="کد_درجه" Type="sarbaz" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sarbaz" Member="sarbazs">
+    <Type Name="sarbaz">
+      <Column Name="Id_Sarbaz" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="کد" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="نام" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[نام خانوادگی]" Member="نام_خانوادگی" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[شماره شناسنامه]" Member="شماره_شناسنامه" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[نام پدر]" Member="نام_پدر" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[شماره ملی]" Member="شماره_ملی" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[حوزه خدمت]" Member="حوزه_خدمت" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="توضیحات" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="معرف" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ تولد]" Member="تاریخ_تولد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[محل تولد]" Member="محل_تولد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[محل صدور]" Member="محل_صدور" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="آدرس" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="کد_شهر_محل_سکونت" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[کد پستی]" Member="کد_پستی" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="تلفن" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="کد_تحصیلات" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="تحصیلات" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="رشته" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="تاهل" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="خانواده_شهید" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="تک_پسر" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="حافظ_قرآن" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="مذهب" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="سازمان_بهزیستی" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="کمیته_امداد" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[سابقه بسیج عادی]" Member="سابقه_بسیج_عادی" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[سابقه بسیج فعال]" Member="سابقه_بسیج_فعال" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="تکمیلی" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="سی_روزه" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="حوزه_جذب" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[محل آموزش]" Member="محل_آموزش" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[شروع آموزش]" Member="شروع_آموزش" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[پایان آموزش]" Member="پایان_آموزش" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="تاریخ_معرفی" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="محل_خدمت_قبلی" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="جذب" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="اولویت" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[معاف از رزم]" Member="معاف_از_رزم" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="درجه" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[کد درجه]" Member="کد_درجه" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[نوع عضویت]" Member="نوع_عضویت" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="مهارت" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاريخ صدور دفترچه]" Member="تاريخ_صدور_دفترچه" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[شماره گواهينامه آموزش]" Member="شماره_گواهينامه_آموزش" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[اضافه خدمت دفترچه اي]" Member="اضافه_خدمت_دفترچه_اي" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[مدت اضافه خدمت ماه]" Member="مدت_اضافه_خدمت_ماه" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[مدت اضافه خدمت روز]" Member="مدت_اضافه_خدمت_روز" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[كسر خدمت]" Member="كسر_خدمت" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[مدت كسر خدمت به ماه]" Member="مدت_كسر_خدمت_به_ماه" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[مدت كسر خدمت به روز]" Member="مدت_كسر_خدمت_به_روز" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[عضو پي واي]" Member="عضو_پي_واي" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[خدمت قبلی ماه]" Member="خدمت_قبلی_ماه" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[خدمت قبلی روز]" Member="خدمت_قبلی_روز" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Khon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="hight" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="EyeColor" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="hairColor" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="color_skin" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Jesmani" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HoghoghiState" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="BimehState" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="BimehNumber" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Tadavom" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="استحقاقی" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[مدت ماموریت(ماه)]" Member="مدت_ماموریت_ماه_" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[محل ماموریت]" Member="محل_ماموریت" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ اعزام]" Member="تاریخ_اعزام" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ اعزام میلادی]" Member="تاریخ_اعزام_میلادی" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ اتمام ماموریت]" Member="تاریخ_اتمام_ماموریت" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ اتمام ماموریت میلادی]" Member="تاریخ_اتمام_ماموریت_میلادی" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ ترخیص]" Member="تاریخ_ترخیص" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ ترخیص میلادی]" Member="تاریخ_ترخیص_میلادی" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="بومی" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[فرمانده دسته]" Member="فرمانده_دسته" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="فراری" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="کمیسیون" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="مامور" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Gradetbl_sarbaz" Member="Gradetbl" ThisKey="کد_تحصیلات" OtherKey="Id_Grade" Type="Gradetbl" IsForeignKey="true" />
+      <Association Name="City_sarbaz" Member="City" ThisKey="کد_شهر_محل_سکونت" OtherKey="ID_City" Type="City" IsForeignKey="true" />
+      <Association Name="Daraje_sarbaz" Member="Daraje" ThisKey="کد_درجه" OtherKey="ID" Type="Daraje" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mashmoolin" Member="Mashmoolins">
+    <Type Name="Mashmoolin">
+      <Column Name="Id_Mashmoolin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="نام" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[نام خانوادگی]" Member="نام_خانوادگی" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[نام پدر]" Member="نام_پدر" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[شماره شناسنامه]" Member="شماره_شناسنامه" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[شماره ملی]" Member="شماره_ملی" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="معرف" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[تاریخ تولد]" Member="تاریخ_تولد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[محل تولد]" Member="محل_تولد" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="آدرس" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="کد_شهر_محل_سکونت" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="تلفن" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="کد_تحصیلات" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="تحصیلات" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="رشته" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="تاهل" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="خانواده_شهید" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="تک_پسر" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="حافظ_قرآن" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="مذهب" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="سازمان_بهزیستی" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="کمیته_امداد" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[سابقه بسیج عادی]" Member="سابقه_بسیج_عادی" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[سابقه بسیج فعال]" Member="سابقه_بسیج_فعال" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[تاریخ اعزام]" Member="تاریخ_اعزام" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="تکمیلی" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="سی_روزه" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="حوزه_جذب" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[محل آموزش]" Member="محل_آموزش" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="محل_خدمت_قبلی" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="توضیحات" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="جذب" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="اولویت" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[معاف از رزم]" Member="معاف_از_رزم" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="اضاف" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="City_Mashmoolin" Member="City" ThisKey="کد_شهر_محل_سکونت" OtherKey="ID_City" Type="City" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServerName_tbl" Member="ServerName_tbls">
+    <Type Name="ServerName_tbl">
+      <Column Name="ServerName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ConnectionString" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
